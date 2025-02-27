@@ -32,3 +32,13 @@ class TestRobot:
         when(robot).move("NNNSSSW").thenReturn(None)
         robot.move("NNNSSSW")
         verify(robot).move("NNNSSSW")
+
+    def test_move_out_of_range(self):
+        robot = Robot(100, 100)
+        with pytest.raises(ValueError):
+            robot.move(["N", "E"])
+
+    def test_move_out_of_range_negative(self):
+        robot = Robot(0, 0)
+        with pytest.raises(ValueError):
+            robot.move(["S", "W"])

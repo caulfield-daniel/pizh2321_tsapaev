@@ -26,3 +26,7 @@ if __name__ == "__main__":
     print(robot)
     # Результат:
     # Robot(x=1, y=1)
+
+    robot = Robot(0, 0)
+    robot.move("SW")
+    print(robot.path())

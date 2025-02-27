@@ -53,7 +53,9 @@ class Robot(RobotBase):
         :return: последняя координата робота
         """
         for m in moves:
-            if (self._RobotBase__x > 100) or (self._RobotBase__y > 100):
+            if (self._RobotBase__x > 100 or self._RobotBase__y > 100) or (
+                self._RobotBase__x < 0 or self._RobotBase__y < 0
+            ):
                 raise ValueError("Робот выходит за границы диапазона")
             if m == "N":
                 self._RobotBase__y += 1

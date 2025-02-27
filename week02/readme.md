@@ -48,16 +48,10 @@ class RobotBase(ABC):
 
 def __init__(self, x: int, y: int):
 
-        if (0 <= x <= 100) and (0 <= y <= 100):
-            super().__init__(x, y)
-            self.__path_cache = [(self._RobotBase__x, self._RobotBase__y)]
-        else:
-            raise ValueError("Робот должен располагаться в пределах диапазона")
-
-    def move(self, moves: List[str]) -> Tuple[int, int]:
-
         for m in moves:
-            if (self._RobotBase__x > 100) or (self._RobotBase__y > 100):
+            if (self._RobotBase__x > 100 or self._RobotBase__y > 100) or (
+                self._RobotBase__x < 0 or self._RobotBase__y < 0
+            ):
                 raise ValueError("Робот выходит за границы диапазона")
             if m == "N":
                 self._RobotBase__y += 1
@@ -71,6 +65,7 @@ def __init__(self, x: int, y: int):
                 continue
             else:
                 raise ValueError("Неверный символ!")
+
 
             self.__path_cache.append((self._RobotBase__x, self._RobotBase__y))
 
