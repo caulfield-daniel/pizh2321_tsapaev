@@ -2,31 +2,24 @@ from robot import Robot
 
 
 if __name__ == "__main__":
-    robot = Robot(0, 0)
 
     # Примеры использования:
 
-    robot.move("WWSSNNEE")
+    robot = Robot(0, 0)
+    robot.move("NNNSSS")
     print(robot.path())
-    # Результат:
-    # [(0, 0), (-1, 0), ... (-1, 0), (0, 0)]
 
-    print(robot.move(""))
-    # Результат:
-    # (0, 0)
-
-    print(robot(["N", "E", "S", "W"]))
-    # Результат:
-    # (10, 10)
-
-    print(robot(["N", "E", "E", "W"]))
-    # Результат:
-    # (1, 1)
-
-    print(robot)
-    # Результат:
-    # Robot(x=1, y=1)
+    # Вывод:
+    # [(0, 0), (0, 1), (0, 2), (0, 3), (0, 2), (0, 1), (0, 0)]
 
     robot = Robot(0, 0)
-    robot.move("SW")
-    print(robot.path())
+    print(robot)
+
+    # Вывод:
+    # Robot(x=0, y=0)
+
+    robot = Robot(0, 0)
+    print(robot("NNNN"))
+
+    # Вывод:
+    # (0, 4)
