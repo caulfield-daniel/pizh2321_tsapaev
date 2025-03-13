@@ -1,3 +1,6 @@
+from typing import Dict, Tuple
+
+
 class TimeDeposit:
     """Абстрактный класс - срочный вклад.
 
@@ -20,17 +23,23 @@ class TimeDeposit:
             возвращает сумму по окончании вклада.
     """
 
-    def __init__(self, name, interest_rate, period_limit, sum_limit):
+    def __init__(
+        self,
+        name: str,
+        interest_rate: float,
+        period_limit: Tuple[int, int],
+        sum_limit: Tuple[float, float],
+    ):
         """Инициализировать атрибуты класса."""
         self.name: str = name
         self._interest_rate: float = interest_rate
-        self._period_limit: tuple = period_limit
-        self._sum_limit: tuple = sum_limit
+        self._period_limit: Tuple[int, int] = period_limit
+        self._sum_limit: Tuple[float, float] = sum_limit
 
         # Проверить значения
         self._check_self()
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Вернуть строковое представление депозита.
 
         Формат вывода:
@@ -50,10 +59,10 @@ class TimeDeposit:
         )
 
     @property
-    def currency(self):
+    def currency(self) -> str:
         return "руб."  # Не изменяется
 
-    def _check_self(self):
+    def _check_self(self) -> None:
         """Проверить, что данные депозита являются допустимыми."""
         assert 0 < self._interest_rate <= 100, "Неверно указан процент по вкладу!"
         assert (
@@ -63,157 +72,175 @@ class TimeDeposit:
             0 < self._sum_limit[0] <= self._sum_limit[1]
         ), "Неверно указаны ограничения по сумме вклада!"
 
-    def _check_user_params(self, initial_sum, period):
+    def _check_user_params(self, initial_sum: float, period: int) -> None:
         """Проверить, что данные депозита соответствуют его ограничениям."""
         is_sum_ok = self._sum_limit[0] <= initial_sum < self._sum_limit[1]
         is_period_ok = self._period_limit[0] <= period < self._period_limit[1]
         assert is_sum_ok and is_period_ok, "Условия вклада не соблюдены!"
 
+    def get_profit(self, initial_sum: float, period: int) -> float:
+        """Вернуть прибыль по вкладу вклада клиента.
 
-#     def get_profit(self, initial_sum, period):
-#         """Вернуть прибыль по вкладу вклада клиента.
+        Параметры:
+          - initial_sum (float): первоначальная сумма;
+          - period (int): количество месяцев размещения вклада.
 
-#         Параметры:
-#           - initial_sum (float): первоначальная сумма;
-#           - period (int): количество месяцев размещения вклада.
+        Формула:
+          первоначальная_сумма * % / 100 * период / 12
+        """
+        # Проверить, укладывается ли вклад в ограничения
+        self._check_user_params(initial_sum, period)
+        # Выполнить расчет
+        return initial_sum * self._interest_rate / 100 * period / 12
 
-#         Формула:
-#           первоначальная_сумма * % / 100 * период / 12
-#         """
-#         # Проверить, укладывается ли вклад в ограничения
-#         self._check_user_params(initial_sum, period)
-#         # Выполнить расчет
-#         return initial_sum * self._interest_rate / 100 * period / 12
+    def get_sum(self, initial_sum: float, period: int) -> float:
+        """Вернуть сумму вклада клиента после начисления прибыли.
 
-#     def get_sum(self, initial_sum, period):
-#         """Вернуть сумму вклада клиента после начисления прибыли.
-
-#         Параметры:
-#           - initial_sum (float): первоначальная сумма;
-#           - period (int): количество месяцев размещения вклада.
-#         """
-#         # Проверить, укладывается ли вклад в ограничения
-#         return initial_sum + self.get_profit(initial_sum, period)
-
-
-# class BonusTimeDeposit(TimeDeposit):
-#     """Срочный вклад c получением бонуса к концу срока вклада.
-
-#     Бонус начисляется как % от прибыли, если вклад больше определенной суммы.
-
-#     Атрибуты:
-#       - self._bonus (dict ("percent"=int, "sum"=float)):
-#         % от прибыли, мин. сумма;
-#     """
-
-#     def __init__(self, name, interest_rate, period_limit, sum_limit, bonus):
-#         """Инициализировать атрибуты класса."""
-#         raise NotImplementedError
-#         # Уберите raise и добавьте необходимый код
-
-#         super().__init__(name, interest_rate, period_limit, sum_limit)
-
-#     def __str__(self):
-#         """Вернуть строковое представление депозита.
-
-#         К информации о родителе добавляется информацию о бонусе.
-
-#         Формат вывода:
-
-#         Наименование:       Бонусный Вклад
-#         Валюта:             руб.
-#         Процентная ставка:  5
-#         Срок (мес.):        [6; 18)
-#         Сумма:              [1,000; 100,000)
-#         Бонус (%):          5
-#         Бонус (мин. сумма): 2,000
-#         """
-#         raise NotImplementedError
-#         # Уберите raise и добавьте необходимый код
-
-#     def _check_self(self):
-#         """Проверить, что данные депозита являются допустимыми.
-
-#         Дополняем родительский метод проверкой бонуса.
-#         """
-#         raise NotImplementedError
-#         # Уберите raise и добавьте необходимый код
-
-#     def get_profit(self, initial_sum, period):
-#         """Вернуть прибыль по вкладу вклада клиента.
-
-#         Параметры:
-#           - initial_sum (float): первоначальная сумма;
-#           - period (int): количество месяцев размещения вклада.
-
-#         Формула:
-#           - прибыль = сумма * процент / 100 * период / 12
-
-#         Для подсчета прибыли используется родительский метод.
-#         Далее, если первоначальная сумма > необходимой,
-#         начисляется бонус.
-#         """
-#         raise NotImplementedError
-#         # Уберите raise и добавьте необходимый код
+        Параметры:
+          - initial_sum (float): первоначальная сумма;
+          - period (int): количество месяцев размещения вклада.
+        """
+        # Проверить, укладывается ли вклад в ограничения
+        self._check_user_params(initial_sum, period)
+        # Выполнить расчет
+        return initial_sum + self.get_profit(initial_sum, period)
 
 
-# class CompoundTimeDeposit(TimeDeposit):
-#     """Срочный вклад c ежемесячной капитализацией процентов."""
+class BonusTimeDeposit(TimeDeposit):
+    """Срочный вклад c получением бонуса к концу срока вклада.
 
-#     def __str__(self):
-#         """Вернуть строковое представление депозита.
+    Бонус начисляется как % от прибыли, если вклад больше определенной суммы.
 
-#         К информации о родителе добавляется информация о капитализации.
+    Атрибуты:
+      - self._bonus (dict ("percent"=int, "sum"=float)):
+        % от прибыли, мин. сумма;
+    """
 
-#         Формат вывода:
+    def __init__(
+        self,
+        name: str,
+        interest_rate: float,
+        period_limit: Tuple[int, int],
+        sum_limit: Tuple[float, float],
+        bonus: Dict[int, float],
+    ):
+        """Инициализировать атрибуты класса."""
+        self._bonus: Dict[int, float] = bonus
 
-#         Наименование:       Вклад с Капитализацией
-#         Валюта:             руб.
-#         Процентная ставка:  5
-#         Срок (мес.):        [6; 18)
-#         Сумма:              [1,000; 100,000)
-#         Капитализация %   : Да
-#         """
-#         raise NotImplementedError
-#         # Уберите raise и добавьте необходимый код
+        super().__init__(name, interest_rate, period_limit, sum_limit)
 
-#     def get_profit(self, initial_sum, period):
-#         """Вернуть прибыль по вкладу вклада клиента.
+    def __str__(self):
+        """Вернуть строковое представление депозита.
 
-#         Параметры:
-#           - initial_sum (float): первоначальная сумма;
-#           - period (int): количество месяцев размещения вклада.
+        К информации о родителе добавляется информацию о бонусе.
 
-#         Родительский метод для подсчета прибыли использовать не нужно,
-#         переопределив его полностью - расчет осуществляется по новой формуле.
-#         Капитализация процентов осуществляется ежемесячно.
+        Формат вывода:
 
-#         Нужно не забыть про самостоятельный вызов проверки параметров.
+        Наименование:       Бонусный Вклад
+        Валюта:             руб.
+        Процентная ставка:  5
+        Срок (мес.):        [6; 18)
+        Сумма:              [1,000; 100,000)
+        Бонус (%):          5
+        Бонус (мин. сумма): 2,000
+        """
 
-#         Формула:
-#           первоначальная_сумма * (1 + % / 100 / 12) ** период -
-#           первоначальная_сумма
-#         """
-#         raise NotImplementedError
-#         # Уберите raise и добавьте необходимый код
+        return (
+            f"Наименование:       {self.name:<20}\n"
+            f"Валюта:             {self.currency:<10}\n"
+            f"Процентная ставка:  {self._interest_rate:<5}\n"
+            f"Срок (мес.):        {str(self._period_limit)[:-1]}]\n"
+            f"Сумма:              [{str(self._sum_limit)[1:]}\n"
+            f"Бонус (%):          {self._bonus['percent']}\n"
+            f"Бонус (мин. сумма):  {self._bonus['sum']}"
+        )
+
+    def _check_self(self) -> None:
+        """Проверить, что данные депозита являются допустимыми.
+
+        Дополняем родительский метод проверкой бонуса.
+        """
+        super()._check_self()
+
+        assert self._bonus["sum"] > 0, "Неверно указана сумма для начисления бонуса!"
+        assert self._bonus["percent"] > 0, "Неверно указан процент бонуса!"
+
+    def get_profit(self, initial_sum: float, period: int) -> float:
+        """Вернуть прибыль по вкладу вклада клиента.
+
+        Параметры:
+          - initial_sum (float): первоначальная сумма;
+          - period (int): количество месяцев размещения вклада.
+
+        Формула:
+          - прибыль = сумма * процент / 100 * период / 12
+
+        Для подсчета прибыли используется родительский метод.
+        Далее, если первоначальная сумма > необходимой,
+        начисляется бонус.
+        """
+
+        if initial_sum > self._bonus["sum"]:
+            return super().get_profit(initial_sum, period) * (
+                1 + self._bonus["percent"] / 100
+            )
+
+        return super().get_profit(initial_sum, period)
 
 
-# # ---
+class CompoundTimeDeposit(TimeDeposit):
+    """Срочный вклад c ежемесячной капитализацией процентов."""
+
+    def __str__(self):
+        """Вернуть строковое представление депозита.
+
+        К информации о родителе добавляется информация о капитализации.
+
+        Формат вывода:
+
+        Наименование:       Вклад с Капитализацией
+        Валюта:             руб.
+        Процентная ставка:  5
+        Срок (мес.):        [6; 18)
+        Сумма:              [1,000; 100,000)
+        Капитализация %   : Да
+        """
+        raise NotImplementedError
+        # Уберите raise и добавьте необходимый код
+
+    def get_profit(self, initial_sum: float, period: int) -> float:
+        """Вернуть прибыль по вкладу вклада клиента.
+
+        Параметры:
+          - initial_sum (float): первоначальная сумма;
+          - period (int): количество месяцев размещения вклада.
+
+        Родительский метод для подсчета прибыли использовать не нужно,
+        переопределив его полностью - расчет осуществляется по новой формуле.
+        Капитализация процентов осуществляется ежемесячно.
+
+        Нужно не забыть про самостоятельный вызов проверки параметров.
+
+        Формула:
+          первоначальная_сумма * (1 + % / 100 / 12) ** период -
+          первоначальная_сумма
+        """
+        raise NotImplementedError
+        # Уберите raise и добавьте необходимый код
 
 
-# deposits_data = dict(interest_rate=5, period_limit=(6, 18), sum_limit=(1000, 100000))
+# ---
 
-# # Список имеющихся депозитов
-# deposits = (
-#     TimeDeposit(
-#         "Сохраняй", interest_rate=5, period_limit=(6, 18), sum_limit=(1000, 100000)
-#     ),
-#     BonusTimeDeposit(
-#         "Бонусный 2", **deposits_data, bonus=dict(percent=5, sum=2000)
-#     ),
-#     CompoundTimeDeposit(
-#         "С капитализацией", **deposits_data
-#     ),
-# )
-# raise NotImplementedError
-# # Уберите raise и добавьте несколько вкладов
+
+deposits_data = dict(interest_rate=5, period_limit=(6, 18), sum_limit=(1000, 100000))
+
+# Список имеющихся депозитов
+deposits = (
+    TimeDeposit(
+        "Сохраняй", interest_rate=5, period_limit=(6, 18), sum_limit=(1000, 100000)
+    ),
+    BonusTimeDeposit("Бонусный 2", **deposits_data, bonus=dict(percent=5, sum=2000)),
+    CompoundTimeDeposit("С капитализацией", **deposits_data),
+)
+raise NotImplementedError
+# Уберите raise и добавьте несколько вкладов
