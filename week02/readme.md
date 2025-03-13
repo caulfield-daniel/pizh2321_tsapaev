@@ -173,4 +173,4 @@ class Robot(RobotBase):
 ```
 
 # UML-диаграмма классов
-![UML-диаграмма](week02_uml.png)
+![UML-диаграмма](assets/week02_uml.png)
