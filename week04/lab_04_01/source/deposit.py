@@ -54,7 +54,7 @@ class TimeDeposit:
             f"Наименование:       {self.name:<20}\n"
             f"Валюта:             {self.currency:<10}\n"
             f"Процентная ставка:  {self._interest_rate:<5}\n"
-            f"Срок (мес.):        {str(self._period_limit)[:-1]}]\n"
+            f"Срок (мес.):        [{str(self._period_limit)[1:]}\n"
             f"Сумма:              [{str(self._sum_limit)[1:]}"
         )
 
@@ -149,7 +149,7 @@ class BonusTimeDeposit(TimeDeposit):
             f"Наименование:       {self.name:<20}\n"
             f"Валюта:             {self.currency:<10}\n"
             f"Процентная ставка:  {self._interest_rate:<5}\n"
-            f"Срок (мес.):        {str(self._period_limit)[:-1]}]\n"
+            f"Срок (мес.):        [{str(self._period_limit)[1:]}\n"
             f"Сумма:              [{str(self._sum_limit)[1:]}\n"
             f"Бонус (%):          {self._bonus['percent']}\n"
             f"Бонус (мин. сумма):  {self._bonus['sum']}"
@@ -205,31 +205,32 @@ class CompoundTimeDeposit(TimeDeposit):
         Сумма:              [1,000; 100,000)
         Капитализация %   : Да
         """
-        raise NotImplementedError
-        # Уберите raise и добавьте необходимый код
+        return (
+            f"Наименование:       {self.name:<20}\n"
+            f"Валюта:             {self.currency:<10}\n"
+            f"Процентная ставка:  {self._interest_rate:<5}\n"
+            f"Срок (мес.):        [{str(self._period_limit)[1:]})\n"
+            f"Сумма:              [{str(self._sum_limit)[1:]}\n"
+            f"Капитализация %   : Да"
+        )
 
     def get_profit(self, initial_sum: float, period: int) -> float:
-        """Вернуть прибыль по вкладу вклада клиента.
+        """Вернуть прибыль по вкладу клиента.
 
         Параметры:
           - initial_sum (float): первоначальная сумма;
           - period (int): количество месяцев размещения вклада.
 
-        Родительский метод для подсчета прибыли использовать не нужно,
-        переопределив его полностью - расчет осуществляется по новой формуле.
-        Капитализация процентов осуществляется ежемесячно.
-
-        Нужно не забыть про самостоятельный вызов проверки параметров.
-
         Формула:
           первоначальная_сумма * (1 + % / 100 / 12) ** период -
           первоначальная_сумма
         """
-        raise NotImplementedError
-        # Уберите raise и добавьте необходимый код
-
-
-# ---
+        # Проверить, укладывается ли вклад в ограничения
+        self._check_user_params(initial_sum, period)
+        # Выполнить расчет с учетом капитализации
+        return (
+            initial_sum * ((1 + self._interest_rate / 100 / 12) ** period) - initial_sum
+        )
 
 
 deposits_data = dict(interest_rate=5, period_limit=(6, 18), sum_limit=(1000, 100000))
@@ -241,6 +242,6 @@ deposits = (
     ),
     BonusTimeDeposit("Бонусный 2", **deposits_data, bonus=dict(percent=5, sum=2000)),
     CompoundTimeDeposit("С капитализацией", **deposits_data),
+    BonusTimeDeposit("Бонусный 3", **deposits_data, bonus=dict(percent=7, sum=3000)),
+    CompoundTimeDeposit("Вклад с Капитализацией 2", **deposits_data),
 )
-raise NotImplementedError
-# Уберите raise и добавьте несколько вкладов

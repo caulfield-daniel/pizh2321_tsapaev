@@ -22,15 +22,20 @@ if __name__ == "__main__":
                     pass
 
             if len(matched_deposits) > 0:
-                print("{0:18} | {1:13} | {2:13}".format(
-                    "Вклад", "Прибыль", "Итоговая сумма"
-                ))
+                print(
+                    "{0:18} | {1:13} | {2:13}".format(
+                        "Вклад", "Прибыль", "Итоговая сумма"
+                    )
+                )
                 for deposit in matched_deposits:
-                    print("{0:18} | {1:8,.2f} {3:4} | {2:8,.2f} {3:4}".format(
-                          deposit.name,
-                          deposit.get_profit(initial_sum, period),
-                          deposit.get_sum(initial_sum, period),
-                          deposit.currency))
+                    print(
+                        "{0:18} | {1:8,.2f} {3:4} | {2:8,.2f} {3:4}".format(
+                            deposit.name,
+                            deposit.get_profit(initial_sum, period),
+                            deposit.get_sum(initial_sum, period),
+                            deposit.currency,
+                        )
+                    )
             else:
                 print("К сожалению, нет подходящих Вам вкладов.")
 
@@ -51,5 +56,7 @@ if __name__ == "__main__":
 # 2/2: Введите срок вклада (мес.): 12
 # Вклад              | Прибыль       | Итоговая сумма
 # Сохраняй           |    50.00 руб. | 1,050.00 руб.
-# Бонусный           |    50.00 руб. | 1,050.00 руб.
+# Бонусный 2         |    50.00 руб. | 1,050.00 руб.
 # С капитализацией   |    51.16 руб. | 1,051.16 руб.
+# Бонусный 3         |    50.00 руб. | 1,050.00 руб.
+# Вклад с Капитализацией 2 |    51.16 руб. | 1,051.16 руб.
