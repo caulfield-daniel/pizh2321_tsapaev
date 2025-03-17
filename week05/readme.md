@@ -50,3 +50,7 @@ stack_collection.add(Stack())
 stack_collection.save("stacks.json")
 stack_collection.load("stacks.json")
 print(stack_collection)
+```
+
+### UML-диаграмма классов
+![UML-диаграмма класса](assets/container_uml.png)

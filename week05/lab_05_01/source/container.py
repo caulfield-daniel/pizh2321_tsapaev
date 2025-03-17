@@ -2,15 +2,20 @@ import json
 from stack import Stack
 from typing import List
 
+
 class StackCollection:
-    '''
+    """
     Класс, реализующий контейнер для хранения объектов класса Stack.
-    '''
-    def __init__(self) -> None:
+    """
+
+    def __init__(self, *args: Stack) -> None:
         """
         Инициализация контейнера.
+
+        Параметры:
+        *args (Stack): Объекты класса Stack, которые будут добавлены в контейнер.
         """
-        self._data: List[Stack] = []
+        self._data: List[Stack] = list(args)
 
     def __str__(self) -> str:
         """
@@ -58,7 +63,7 @@ class StackCollection:
         Параметры:
           - filename: имя файла для сохранения.
         """
-        with open(filename, 'w') as file:
+        with open(filename, "w") as file:
             json.dump([stack.to_object() for stack in self._data], file)
 
     def load(self, filename: str) -> None:
@@ -68,5 +73,5 @@ class StackCollection:
         Параметры:
           - filename: имя файла для загрузки.
         """
-        with open(filename, 'r') as file:
+        with open(filename, "r") as file:
             self._data = [Stack.get_stack_from_object(obj) for obj in json.load(file)]

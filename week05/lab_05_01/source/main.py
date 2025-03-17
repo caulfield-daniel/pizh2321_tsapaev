@@ -1,22 +1,41 @@
-from container import StackCollection
+import json
 from stack import Stack
+from container import StackCollection
 
-if __name__ == "__main__":
+def main():
+    stack_collection = StackCollection()
+
     stack1 = Stack()
     stack1.push(1)
     stack1.push(2)
+    stack1.push(3)
 
     stack2 = Stack()
-    stack2.push(3)
+    stack2.push(4)
+    stack2.push(5)
 
-    container = StackCollection()
-    container.add(stack1)
-    container.add(stack2)
-    print(container)
+    stack_collection.add(stack1)
+    stack_collection.add(stack2)
 
-    container.save("stack_collection.json")
+    # Реинициализация коллекции с использованием конструктора
+    stack_collection = StackCollection(Stack(1,2,3), Stack(4,5))
 
-    loaded_container = StackCollection()
-    loaded_container.load("stack_collection.json")
+    print("Содержимое коллекции после добавления стеков:")
+    print(stack_collection) # Контейнер, содержащий 2 стеков: ['Stack(3, 2, 1)', 'Stack(5, 4)']
 
-    print(loaded_container)
+    stack_collection.remove(0)
+
+    print("\nСодержимое коллекции после удаления первого стека:")
+    print(stack_collection) # Контейнер, содержащий 1 стеков: ['Stack(5, 4)']
+
+    stack_collection.save('stacks.json')
+    print("\nКоллекция сохранена в файл 'stacks.json'.")
+
+    new_stack_collection = StackCollection()
+    new_stack_collection.load('stacks.json')
+
+    print("\nЗагруженная коллекция из файла:")
+    print(new_stack_collection)
+
+if __name__ == "__main__":
+    main()

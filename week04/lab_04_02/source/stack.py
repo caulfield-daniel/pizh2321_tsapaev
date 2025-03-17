@@ -7,11 +7,11 @@ class Stack:
     Класс, реализующий стек.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, *args: Any) -> None:
         """
         Инициализация стека.
         """
-        self._items: List[Any] = []
+        self._items: List[Any] = list(args)
 
     def is_empty(self) -> bool:
         """
