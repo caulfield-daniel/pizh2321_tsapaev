@@ -36,7 +36,7 @@ if __name__ == "__main__":
     print(s.is_empty())  # Вывод: False
 
     # Создаем стек из строки
-    s.from_string("4 5 6")
+    s.from_string("4 5 6 7 8 9")
 
     # Проверяем размер стека после создания из строки
     print(s.size())  # Вывод: 3
