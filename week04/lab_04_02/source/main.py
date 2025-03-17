@@ -19,7 +19,7 @@ if __name__ == "__main__":
     s.push(1)
     s.push(2)
     s.push(3)
-
+    
     # Проверяем размер стека
     print(s.size())  # Вывод: 3
 
