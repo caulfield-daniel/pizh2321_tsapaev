@@ -1,4 +1,3 @@
-import json
 from stack import Stack
 from container import StackCollection
 
