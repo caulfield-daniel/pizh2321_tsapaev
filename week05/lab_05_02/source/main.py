@@ -20,6 +20,11 @@ if __name__ == "__main__":
     print(pencil.last_written_text())
     print(pen.last_written_text())
 
-    # Зададим стиль письма ручке и проверим
+    # Зададим стили письма
     pen.set_writing_style("italic")
-    pen.write("Проверка стиля письма.")
+    pencil.set_writing_style("bold")
+    gel_pen.set_writing_style("underline")
+    
+    # Напишем текст заданным стилем
+    for _ in (pencil, pen, gel_pen):
+        _.write("Текст с заданным стилем.")

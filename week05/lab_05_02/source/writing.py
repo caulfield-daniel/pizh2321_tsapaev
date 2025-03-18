@@ -37,19 +37,29 @@ class WritingTool(ABC):
         Returns:
             str: Последний текст, записанный в стек.
         """
-        return self.__text_cache.peek()
+        try:
+            return self.__text_cache.peek()
+        except Exception as e:
+            print(f"Ошибка при получении последнего текста: {e}")
+            return ""
 
     def undo(self) -> None:
         """
         Отменяет последнее действие, удаляя последний элемент из стека.
         """
-        self.__text_cache.pop()
+        try:
+            self.__text_cache.pop()
+        except Exception as e:
+            print(f"Ошибка при отмене последнего действия: {e}")
 
     def clear_cache(self) -> None:
         """
         Очищает стек, удаляя все записанные тексты.
         """
-        self.__text_cache.clear()
+        try:
+            self.__text_cache.clear()
+        except Exception as e:
+            print(f"Ошибка при очистке стека: {e}")
 
     def set_writing_style(self, style: str) -> None:
         """
@@ -62,7 +72,13 @@ class WritingTool(ABC):
                 - UNDERLINE: Подчеркнутый текст
                 - ITALIC: Курсив
         """
-        self._writing_style = self.TEXT_STYLES[style.upper()]
+        try:
+            self._writing_style = self.TEXT_STYLES[style.upper()]
+        except KeyError:
+            print(
+                f"Ошибка: стиль '{style}' не поддерживается. Установлен стандартный стиль."
+            )
+            self._writing_style = self.TEXT_STYLES["DEFAULT"]
 
     def get_writing_style(self) -> str:
         """
@@ -102,10 +118,13 @@ class Pencil(WritingTool):
         Args:
             text (str): Текст для записи.
         """
-        self._WritingTool__text_cache.push(text)
-        print(
-            f"{self._writing_style}{self.PENCIL_COLOR}{text}{self.TEXT_STYLES['DEFAULT']}"
-        )
+        try:
+            self._WritingTool__text_cache.push(text)
+            print(
+                f"{self._writing_style}{self.PENCIL_COLOR}{text}{self.TEXT_STYLES['DEFAULT']}"
+            )
+        except Exception as e:
+            print(f"Ошибка при записи текста карандашом: {e}")
 
 
 class Pen(WritingTool):
@@ -126,10 +145,13 @@ class Pen(WritingTool):
         Args:
             text (str): Текст для записи.
         """
-        self._WritingTool__text_cache.push(text)  # Сохраняем текущее состояние
-        print(
-            f"{self._writing_style}{self.GEL_PEN_COLOR}{text}{self.TEXT_STYLES['DEFAULT']}"
-        )  # Выводим текст с цветом
+        try:
+            self._WritingTool__text_cache.push(text)  # Сохраняем текущее состояние
+            print(
+                f"{self._writing_style}{self.PEN_COLOR}{text}{self.TEXT_STYLES['DEFAULT']}"
+            )  # Выводим текст с цветом
+        except Exception as e:
+            print(f"Ошибка при записи текста ручкой: {e}")
 
 
 class GelPen(Pen):
@@ -151,5 +173,8 @@ class GelPen(Pen):
         Args:
             text (str): Текст для записи.
         """
-        self._WritingTool__text_cache.push(text)
-        print(f"{self._writing_style}{self.PEN_COLOR}{text}{self.TEXT_STYLES['DEFAULT']}")
+        try:
+            self._WritingTool__text_cache.push(text)
+            print(f"{self._writing_style}{text}{self.TEXT_STYLES['DEFAULT']}")
+        except Exception as e:
+            print(f"Ошибка при записи текста гелевой ручкой: {e}")
