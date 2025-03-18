@@ -146,10 +146,10 @@ class Pen(WritingTool):
             text (str): Текст для записи.
         """
         try:
-            self._WritingTool__text_cache.push(text)  # Сохраняем текущее состояние
+            self._WritingTool__text_cache.push(text)
             print(
                 f"{self._writing_style}{self.PEN_COLOR}{text}{self.TEXT_STYLES['DEFAULT']}"
-            )  # Выводим текст с цветом
+            )
         except Exception as e:
             print(f"Ошибка при записи текста ручкой: {e}")
 
@@ -164,7 +164,7 @@ class GelPen(Pen):
         Инициализация гелевой ручки. Устанавливает цвет для гелевой ручки.
         """
         super().__init__()
-        self._writing_style = self.GEL_PEN_COLOR  # Устанавливаем цвет для гелевой ручки
+        self._writing_style = self.GEL_PEN_COLOR
 
     def write(self, text: str) -> None:
         """
