@@ -1,13 +1,14 @@
 from writing import *
 
 if __name__ == "__main__":
+
     pencil = Pencil()
     pen = Pen()
     gel_pen = GelPen()
 
     pencil.write("Проверка карандаша.")
     pen.write("Проверка ручки.")
-    gel_pen.write("Проверка гелевой ручки.") 
+    gel_pen.write("Проверка гелевой ручки.")
 
     pencil.write("Еще одна проверка карандаша.")
     # Вернем последний текст, написанный карандашом
@@ -24,7 +25,7 @@ if __name__ == "__main__":
     pen.set_writing_style("italic")
     pencil.set_writing_style("bold")
     gel_pen.set_writing_style("underline")
-    
+
     # Напишем текст заданным стилем
     for _ in (pencil, pen, gel_pen):
         _.write("Текст с заданным стилем.")
