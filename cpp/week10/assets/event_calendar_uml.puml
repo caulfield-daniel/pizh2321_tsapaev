@@ -1,0 +1,45 @@
+@startuml event_calendar
+
+class Event {
+    - date_ : std::string
+    - name_ : std::string
+    - description_ : std::string
+    + Event(date: std::string, name: std::string, description: std::string)
+    + getDate() : std::string
+    + getName() : std::string
+    + getDescription() : std::string
+}
+
+class Event {
+    - date_ : std::string
+    - name_ : std::string
+    - description_ : std::string
+    + Event(date: std::string, name: std::string, description: std::string)
+    + getDate() : std::string
+    + getName() : std::string
+    + getDescription() : std::string
+}
+
+class Calendar {
+    - room_ : std::string
+    - address_ : std::string
+    - events_ : std::vector<Event>
+    + Calendar(room: std::string, address: std::string)
+    + addEvent(event: const Event&) : void
+    + removeEvent(eventName: const std::string&) : void
+    + print() : void
+}
+
+class Calendar {
+    - room_ : std::string
+    - address_ : std::string
+    - events_ : std::vector<Event>
+    + Calendar(room: std::string, address: std::string)
+    + addEvent(event: const Event&) : void
+    + removeEvent(eventName: const std::string&) : void
+    + print() : void
+}
+
+Calendar "1" *-- "*" Event : contains
+
+@enduml

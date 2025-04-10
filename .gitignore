@@ -3,6 +3,7 @@ __pycache__/
 venv/
 .env
 the_snake-main/
+.vscode/
 
 # Prerequisites
 *.d

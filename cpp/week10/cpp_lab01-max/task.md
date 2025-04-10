@@ -22,17 +22,17 @@ _**WordCount.exe [OPTION] filename [filename,.....]***_
   
 ### Примеры запуска программы
 
-_WordCount.exe filename1_
+WordCount.exe filename1_
 
-_WordCount.exe filename1 filename2_
+WordCount.exe filename1 filename2_
 
-_WordCount.exe --words --lines filename1_
+WordCount.exe --words --lines filename1_
 
-_WordCount.exe -l -c filename1_
+WordCount.exe -l -c filename1_
 
-_WordCount.exe -lwc filename1 filename2_
+WordCount.exe -lwc filename1 filename2_
 
-_WordCount.exe  filename1 filename2 -lw --bytes_
+WordCount.exe  filename1 filename2 -lw --bytes_
 
 ## Примечание
 
