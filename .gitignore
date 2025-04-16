@@ -4,6 +4,7 @@ venv/
 .env
 the_snake-main/
 .vscode/
+task.md
 
 # Prerequisites
 *.d

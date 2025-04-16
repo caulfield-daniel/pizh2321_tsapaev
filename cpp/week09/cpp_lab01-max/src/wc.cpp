@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
 		std::cerr << "  -w, --words    Print word count" << std::endl;
 		std::cerr << "  -c, --bytes    Print byte count" << std::endl;
 		std::cerr << "  -m, --chars    Print character count" << std::endl;
+		std::cout << "dfsfds" << std::endl;
 		return 1;
 	}
 

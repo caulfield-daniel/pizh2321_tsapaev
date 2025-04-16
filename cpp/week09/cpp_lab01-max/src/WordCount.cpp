@@ -49,14 +49,25 @@ class FileStats {
 		bytes_ = file.tellg();
 		file.close();
 
-		// Второй проход для остальной статистики
-		file.open(filename_);
+		// Второй проход для остальной статистики (открываем в бинарном режиме)
+		file.open(filename_, std::ios::binary);
+		if (!file) throw std::runtime_error("Can't open file: " + filename_);
+
 		std::string line;
 		while (std::getline(file, line)) {
-			lines_++;
-			chars_ += line.size() + 1;	// +1 для \n
+			// Удаляем завершающий \r, если он есть (для обработки Windows)
+			if (!line.empty() && line.back() == '\r') {
+				line.pop_back();
+			}
+
+			if (!line.empty()) {
+				lines_++;
+			}
+			chars_ += line.size();
+
 			count_words(line);
 		}
+		file.close();
 	}
 
 	/**
