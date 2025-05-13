@@ -1,14 +1,3 @@
-__pycache__/
-.pytest_cache/
-venv/
-.env
-the_snake-main/
-.vscode/
-task.md
-libs/
-
-*.txt
-
 # Prerequisites
 *.d
 
