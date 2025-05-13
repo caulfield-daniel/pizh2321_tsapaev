@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/week12/build/tests/argparser_tests[1]_tests.cmake")
-  include("C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/week12/build/tests/argparser_tests[1]_tests.cmake")
-else()
-  add_test(argparser_tests_NOT_BUILT argparser_tests_NOT_BUILT)
-endif()
