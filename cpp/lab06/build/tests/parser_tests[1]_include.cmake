@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/tests/parser_tests[1]_tests.cmake")
+  include("C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/tests/parser_tests[1]_tests.cmake")
+else()
+  add_test(parser_tests_NOT_BUILT parser_tests_NOT_BUILT)
+endif()

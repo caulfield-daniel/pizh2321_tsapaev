@@ -1,0 +1,50 @@
+[
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -g -std=gnu++17 -o lib\\CMakeFiles\\ITMLparse.dir\\parser.cpp.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\lib\\parser.cpp",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\lib\\parser.cpp",
+  "output": "lib\\CMakeFiles\\ITMLparse.dir\\parser.cpp.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/cpp-lab06-max -g -std=gnu++17 -o bin\\CMakeFiles\\lab6.dir\\main.cpp.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\bin\\main.cpp",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\bin\\main.cpp",
+  "output": "bin\\CMakeFiles\\lab6.dir\\main.cpp.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/cpp-lab06-max -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/include -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest -g -std=gnu++17 -o tests\\CMakeFiles\\parser_tests.dir\\test_parser.cpp.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\tests\\test_parser.cpp",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\tests\\test_parser.cpp",
+  "output": "tests\\CMakeFiles\\parser_tests.dir\\test_parser.cpp.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/cpp-lab06-max -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/include -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest -g -std=gnu++17 -o tests\\CMakeFiles\\parser_tests.dir\\test_format.cpp.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\tests\\test_format.cpp",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\cpp-lab06-max\\tests\\test_format.cpp",
+  "output": "tests\\CMakeFiles\\parser_tests.dir\\test_format.cpp.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googlemock/include -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googlemock -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/include -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps\\googletest-build\\googlemock\\CMakeFiles\\gmock.dir\\src\\gmock-all.cc.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googlemock\\src\\gmock-all.cc",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googlemock\\src\\gmock-all.cc",
+  "output": "_deps\\googletest-build\\googlemock\\CMakeFiles\\gmock.dir\\src\\gmock-all.cc.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googlemock/include -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googlemock -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/include -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps\\googletest-build\\googlemock\\CMakeFiles\\gmock_main.dir\\src\\gmock_main.cc.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googlemock\\src\\gmock_main.cc",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googlemock\\src\\gmock_main.cc",
+  "output": "_deps\\googletest-build\\googlemock\\CMakeFiles\\gmock_main.dir\\src\\gmock_main.cc.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/include -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps\\googletest-build\\googletest\\CMakeFiles\\gtest.dir\\src\\gtest-all.cc.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googletest\\src\\gtest-all.cc",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googletest\\src\\gtest-all.cc",
+  "output": "_deps\\googletest-build\\googletest\\CMakeFiles\\gtest.dir\\src\\gtest-all.cc.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/include -isystem C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps\\googletest-build\\googletest\\CMakeFiles\\gtest_main.dir\\src\\gtest_main.cc.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googletest\\src\\gtest_main.cc",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab06\\build\\_deps\\googletest-src\\googletest\\src\\gtest_main.cc",
+  "output": "_deps\\googletest-build\\googletest\\CMakeFiles\\gtest_main.dir\\src\\gtest_main.cc.obj"
+}
+]
