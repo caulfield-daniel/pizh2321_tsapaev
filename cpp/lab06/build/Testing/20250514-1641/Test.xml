@@ -19,17 +19,45 @@
 	ProcessorCacheSize="0"
 	NumberOfLogicalCPU="16"
 	NumberOfPhysicalCPU="8"
-	TotalVirtualMemory="20893"
+	TotalVirtualMemory="24234"
 	TotalPhysicalMemory="15773"
 	LogicalProcessorsPerPhysical="2"
 	ProcessorClockFrequency="3194"
 	>
 	<Testing>
-		<StartDateTime>May 14 19:41 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</StartDateTime>
-		<StartTestTime>1747240900</StartTestTime>
-		<TestList/>
-		<EndDateTime>May 14 19:41 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</EndDateTime>
-		<EndTestTime>1747240900</EndTestTime>
+		<StartDateTime>May 14 20:44 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</StartDateTime>
+		<StartTestTime>1747244695</StartTestTime>
+		<TestList>
+			<Test>./tests/CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"#_comment_/n_newline_comment"</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"# comment \n newline comment"</Name>
+			<Path>./tests</Path>
+			<FullName>./tests/CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"#_comment_/n_newline_comment"</FullName>
+			<FullCommandLine>C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab06\build\tests\parser_tests.exe "--gtest_filter=CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/0" "--gtest_also_run_disabled_tests"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.0165643</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab06\build\tests\parser_tests.exe "--gtest_filter=CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/0" "--gtest_also_run_disabled_tests"</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJytUcFqAkEMve9X5KiH3aiFHgQPRVspBZW19iKLjLtRp52dGWayFvr13dkV0UKhBXMIeZPMS16SVlpLvYdSSN3pws6ZEsZDXHlyHqva44T8BxuL/iAZCzrifL5AK78Og7tBf8NeWFE/5taiEtvePW4rqQrcFGQ97o3ZK2LyHHuXX0BsYIg2oXOS59HMMA1h2pTAa52BnVRMDkYwNmVJmt+Eqqh2shAsjcZnfQzgybhScPixrCRTktI75eyvsh570Xp0tgzSk+4+cNMq6D7FvmGJ1vHZMpgqsxWqzZM+Smd0mAg8cVzZH8WXnP8aPVpDuppBY9mtVLd0MH+5FSV0elD67o00t2zAhoXqRn/bOpNwcWE+9fVNf7slOKGT6z71VhYPy+XjJCy6rU2ib4AUCrI=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>May 14 20:44 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</EndDateTime>
+		<EndTestTime>1747244695</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

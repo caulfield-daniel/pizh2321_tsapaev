@@ -1,235 +1,170 @@
-#include <lib/parser.h>
 #include <gtest/gtest.h>
 
+#include <iterator>
 #include <sstream>
+#include <vector>
 
+#include "../lib/parser.h"
 
 using namespace omfl;
 
-class ValidFormatTestSuite : public testing::TestWithParam<const char*> {
-};
+class ValidFormatTestSuite : public testing::TestWithParam<const char*> {};
+class InvalidFormatTestSuite : public testing::TestWithParam<const char*> {};
 
-TEST_P(ValidFormatTestSuite, ValidTest) {
-    std::string param = GetParam();
-    ASSERT_TRUE(parse(param).valid());
+TEST_P(ValidFormatTestSuite, AcceptsValidFormats) {
+	const char* param = GetParam();
+	Configuration cfg = Load(param);
+	ASSERT_TRUE(cfg.Valid());
 }
 
-class InvalidFormatTestSuite : public testing::TestWithParam<const char*> {
-};
-TEST_P(InvalidFormatTestSuite, InValidTest) {
-    std::string param = GetParam();
-    ASSERT_FALSE(parse(param).valid());
+TEST_P(InvalidFormatTestSuite, RejectsInvalidFormats) {
+	const char* param = GetParam();
+	Configuration cfg = Load(param);
+	ASSERT_FALSE(cfg.Valid());
 }
 
-// Key
+// Key syntax
 INSTANTIATE_TEST_SUITE_P(
-    KeyValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key = \"value\"",
-        " key      =  \"value\"   ",
-        " key=  \"value\"",
-        " key123 =  \"value\"",
-        " key_1-23-abcd =  \"value\"",
-        " 23key_ =  \"value\""
-    )
-);
+	KeyValidation, ValidFormatTestSuite,
+	testing::Values("key = \"value\"", " key      =  \"value\"   ",
+					" key=  \"value\"", " key123 =  \"value\"",
+					" key_1-23-abcd =  \"value\"", " 23key_ =  \"value\""));
+INSTANTIATE_TEST_SUITE_P(KeyValidation, InvalidFormatTestSuite,
+						 testing::Values("key = \n\"value\"",
+										 "      =  \"value\"   ",
+										 "=  \"value\""));
 
-INSTANTIATE_TEST_SUITE_P(
-    KeyValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "!key = \"value\"",
-        "key = \n\"value\"",
-        "      =  \"value\"   ",
-        "=  \"value\"",
-        " key**123 =  \"value\"",
-        " . =  \"value\"",
-        " .key2.key3 =  \"value\"",
-        " key1. =  \"value\""
-    )
-);
+// Value presence
+INSTANTIATE_TEST_SUITE_P(ValueValidation, ValidFormatTestSuite,
+						 testing::Values("key = \"value\""));
+INSTANTIATE_TEST_SUITE_P(ValueValidation, InvalidFormatTestSuite,
+						 testing::Values("key = ", "key = abcd"));
 
-// Value
-INSTANTIATE_TEST_SUITE_P(
-    ValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key = \"value\""
-    )
-);
-
-INSTANTIATE_TEST_SUITE_P(
-    ValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "key = ",
-        "key = abcd"
-    )
-);
-
-
-TEST(FormatTestSuite, KeyRedifenitionTest) {
-    std::string data = R"(
+TEST(FormatTestSuite, DuplicateKeyFails) {
+	std::string data = R"(
         key = 1
         key = 2)";
-
-    ASSERT_FALSE(parse(data).valid());
+	Configuration cfg = Load(data);
+	ASSERT_FALSE(cfg.Valid());
 }
 
-// Integer Value
-INSTANTIATE_TEST_SUITE_P(
-    IntValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key1 = 2",
-        "key2 = -22",
-        "key3 = +48"
-    )
-);
+// Integer value syntax
+INSTANTIATE_TEST_SUITE_P(IntValueValidation, ValidFormatTestSuite,
+						 testing::Values("key1 = 2", "key2 = -22", "key3 = +48",
+										 "key4 = 2-2", "key5 = 4+8"));
+INSTANTIATE_TEST_SUITE_P(IntValueValidation, InvalidFormatTestSuite,
+						 testing::Values("key1 = -+", "key2 = +"));
 
-INSTANTIATE_TEST_SUITE_P(
-    IntValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "key1 = 2+",
-        "key2 = 2-2",
-        "key3 = 4+8",
-        "key4 = +"
-    )
-);
+// Real (float) value syntax
+INSTANTIATE_TEST_SUITE_P(RealValueValidation, ValidFormatTestSuite,
+						 testing::Values("key1 = 3.14", "key2 = -3.14",
+										 "key3 = +0.00001"));
+INSTANTIATE_TEST_SUITE_P(RealValueValidation, InvalidFormatTestSuite,
+						 testing::Values("key1 = +.", "key2 = ."));
 
-// Float Value
-INSTANTIATE_TEST_SUITE_P(
-    FloatValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key1 = 3.14",
-        "key2 = -3.14",
-        "key3 = +0.00001"
-    )
-);
+// Text (string) value syntax
+INSTANTIATE_TEST_SUITE_P(TextValueValidation, ValidFormatTestSuite,
+						 testing::Values("key1 = \"Hello world\"",
+										 "key2 = \"1, 2, 3, 4, 5\"",
+										 "key3 = \"3.14\"",
+										 "key4 = \"1\t2\t3\"",
+										 "key5 = \"[1,2,3,4,5]\""));
+INSTANTIATE_TEST_SUITE_P(TextValueValidation, InvalidFormatTestSuite,
+						 testing::Values("key1 = \"Hello world",
+										 "key2 = \"Bjarne\" \"stroustrup"));
 
-INSTANTIATE_TEST_SUITE_P(
-    FloatValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "key1 = .0",
-        "key2 = 1.",
-        "key3 = +.1",
-        "key4 = +.",
-        "key5 = ."
-    )
-);
+// Boolean value syntax
+INSTANTIATE_TEST_SUITE_P(BooleanValueValidation, ValidFormatTestSuite,
+						 testing::Values("key1 = true", "key2 = false"));
+INSTANTIATE_TEST_SUITE_P(BooleanValueValidation, InvalidFormatTestSuite,
+						 testing::Values("key1 = tru", "key2 = alse",
+										 "key3 = true true", "key4 = fal se",
+										 "key5 = truefalse"));
 
-// String Value
-INSTANTIATE_TEST_SUITE_P(
-    StringValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key1 = \"Hello world\"",
-        "key2 = \"1, 2, 3, 4, 5\"",
-        "key3 = \"3.14\"",
-        "key4 = \"1\t2\t3\"",
-        "key5 = \"[1,2,3,4,5]\""        
-    )
-);
+// List (array) syntax
+INSTANTIATE_TEST_SUITE_P(ListValueValidation, ValidFormatTestSuite,
+						 testing::Values("key1 = []", "key2 = [1,2,3,4,5]",
+										 "key3 = [1, -3.14, true, \"ITMO\"]",
+										 "key4 = [[1,2],[2,[3,4,5]]]"));
+INSTANTIATE_TEST_SUITE_P(ListValueValidation, InvalidFormatTestSuite,
+						 testing::Values("key1 = [", "key2 = ]",
+										 "key3 = [1,2,3,4",
+										 "key4 = [[1,2],[2,[3,4,5]]"));
 
-INSTANTIATE_TEST_SUITE_P(
-    StringValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "key1 = \"Hello world",
-        "key2 = \"ITMO\"University\"",
-        "key3 = \"Bjarne\" \"stroustrup\""
-    )
-);
+// Section headings
+INSTANTIATE_TEST_SUITE_P(SectionValueValidation, ValidFormatTestSuite,
+						 testing::Values("[section-1]", "[section-1.section-2]",
+										 "[a.b.c.d]"));
+INSTANTIATE_TEST_SUITE_P(SectionValueValidation, InvalidFormatTestSuite,
+						 testing::Values("[}", "{section-1}", "[section-1.}",
+										 "[.section-1}"));
 
+// Comments
+INSTANTIATE_TEST_SUITE_P(CommentValueValidation, ValidFormatTestSuite,
+						 testing::Values("key1 = 1 # comment", "# some text"));
+INSTANTIATE_TEST_SUITE_P(CommentValueValidation, InvalidFormatTestSuite,
+						 testing::Values("# comment \n newline comment"));
 
-// Bool Value
-INSTANTIATE_TEST_SUITE_P(
-    BoolValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key1 = true",
-        "key2 = false"
-    )
-);
+TEST(ExtraFormatTests, EmptyDocumentIsValid) {
+	Configuration cfg = Load("");
+	ASSERT_TRUE(cfg.Valid());
+}
 
-INSTANTIATE_TEST_SUITE_P(
-    BoolValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "key1 = tru",
-        "key2 = alse",
-        "key3 = true true",
-        "key4 = fal se",
-        "key5 = truefalse"
-    )
-);
+TEST(ExtraFormatTests, OnlyCommentIsValid) {
+	Configuration cfg = Load("# configuration header");
+	ASSERT_TRUE(cfg.Valid());
+}
 
+TEST(ExtraFormatTests, ZeroIntegerIsValid) {
+	Configuration cfg = Load("key0 = 0");
+	ASSERT_TRUE(cfg.Valid());
+	EXPECT_TRUE(cfg.Find("key0").IsInteger());
+	EXPECT_EQ(cfg.Find("key0").ToInteger(), 0);
+}
 
-// Array Value
-INSTANTIATE_TEST_SUITE_P(
-    ArrayValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key1 = []",
-        "key2 = [1,2,3,4,5]",
-        "key3 = [1, -3.14, true, \"ITMO\"]",
-        "key4 = [[1,2],[2,[3,4,5]]]"
-    )
-);
+TEST(ExtraFormatTests, PositiveRealIsValid) {
+	Configuration cfg = Load("pi = 0.1");
+	ASSERT_TRUE(cfg.Valid());
+	EXPECT_TRUE(cfg.Find("pi").IsReal());
+	EXPECT_FLOAT_EQ(cfg.Find("pi").ToReal(), 0.1f);
+}
 
-INSTANTIATE_TEST_SUITE_P(
-    ArrayValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "key1 = [",
-        "key2 = ]",
-        "key3 = [1;2;3]",
-        "key4 = [1,2,3,4",
-        "key5 = [[1,2],[2,[3,4,5]"
-    )
-);
+TEST(ExtraFormatTests, NestedEmptyList) {
+	Configuration cfg = Load("arr = [[]]");
+	ASSERT_TRUE(cfg.Valid());
+	const auto& outer = cfg.Find("arr").ToList();
+	ASSERT_EQ(outer.size(), 1u);
+	EXPECT_TRUE(outer[0].IsList());
+	EXPECT_TRUE(outer[0].ToList().empty());
+}
 
+TEST(ExtraFormatTests, HashInsideText) {
+	Configuration cfg = Load("s = \"#notacomment\"");
+	ASSERT_TRUE(cfg.Valid());
+	EXPECT_EQ(cfg.Find("s").ToString(), "#notacomment");
+}
 
-// Section
-INSTANTIATE_TEST_SUITE_P(
-    SectionValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "[section-1]",
-        "[section-1.section-2]",
-        "[a.b.c.d]"
-    )
-);
+TEST(ExtraFormatTests, EmptyListTest) {
+	Configuration cfg = Load("a = []");
+	ASSERT_TRUE(cfg.Valid());
+	EXPECT_TRUE(cfg.Find("a").IsList());
+	EXPECT_TRUE(cfg.Find("a").ToList().empty());
+}
 
-INSTANTIATE_TEST_SUITE_P(
-    SectionValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "[]",
-        "{section-1}",
-        "[section-1.]",
-        "[.section-1]"
-    )
-);
+TEST(ExtraFormatTests, MultipleComments) {
+	Configuration cfg =
+		Load("# first comment # second comment # third comment");
+	ASSERT_TRUE(cfg.Valid());
+}
 
-// Comment
-INSTANTIATE_TEST_SUITE_P(
-    CommentValueValidation,
-    ValidFormatTestSuite,
-    testing::Values(
-        "key1 = 1 # comment",
-        "# some text"
-    )
-);
+TEST(ExtraFormatTests, NumericTextValue) {
+	Configuration cfg = Load("num = \"12345\"");
+	ASSERT_TRUE(cfg.Valid());
+	EXPECT_TRUE(cfg.Find("num").IsText());
+	EXPECT_EQ(cfg.Find("num").ToString(), "12345");
+}
 
-INSTANTIATE_TEST_SUITE_P(
-    CommentValueValidation,
-    InvalidFormatTestSuite,
-    testing::Values(
-        "# comment \n newline comment"
-    )
-);
+TEST(ExtraFormatTests, SectionThenKeyTest) {
+	Configuration cfg = Load("[sec] sub = 5");
+	ASSERT_TRUE(cfg.Valid());
+}

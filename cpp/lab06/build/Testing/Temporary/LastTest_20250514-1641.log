@@ -1,3 +1,30 @@
-Start testing: May 14 19:41 RTZ 2 (çèìà)
+Start testing: May 14 20:44 RTZ 2 (çèìà)
 ----------------------------------------------------------
-End testing: May 14 19:41 RTZ 2 (çèìà)
+80/80 Testing: CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"# comment \n newline comment"
+80/80 Test: CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"# comment \n newline comment"
+Command: "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/tests/parser_tests.exe" "--gtest_filter=CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/0" "--gtest_also_run_disabled_tests"
+Directory: C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/tests
+"CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"# comment \n newline comment"" start time: May 14 20:44 RTZ 2 (çèìà)
+Output:
+----------------------------------------------------------
+Running main() from C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab06/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/0
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CommentValueValidation/InvalidFormatTestSuite
+[ RUN      ] CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/0
+[       OK ] CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/0 (0 ms)
+[----------] 1 test from CommentValueValidation/InvalidFormatTestSuite (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"# comment \n newline comment"" end time: May 14 20:44 RTZ 2 (çèìà)
+"CommentValueValidation/InvalidFormatTestSuite.RejectsInvalidFormats/"# comment \n newline comment"" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 14 20:44 RTZ 2 (çèìà)
