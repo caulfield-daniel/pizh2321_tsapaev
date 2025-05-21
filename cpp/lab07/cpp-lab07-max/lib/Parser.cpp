@@ -12,7 +12,7 @@ Parser::Parser(const std::string& filename) : filename(filename) {}
 bool Parser::parse() {
 	std::ifstream file(filename, std::ios::binary);
 	if (!file) {
-		std::cerr << "Ошибка открытия файла: " << filename << std::endl;
+		std::cerr << "Error opening file: " << filename << std::endl;
 		return false;
 	}
 
@@ -22,14 +22,14 @@ bool Parser::parse() {
 
 	// Проверка наличия ID3-тега
 	if (std::string(header, 3) != "ID3") {
-		std::cerr << "Тег ID3 не найден" << std::endl;
+		std::cerr << "ID3 tag not not found" << std::endl;
 		return false;
 	}
 
 	// Проверка версии (поддерживается только версия 2.4)
 	uint8_t ver = header[3];
 	if (ver != 4) {
-		std::cerr << "Неподдерживаемая версия ID3: 2." << (int)ver << std::endl;
+		std::cerr << "Unsupported ID3 version: 2." << (int)ver << std::endl;
 		return false;
 	}
 
