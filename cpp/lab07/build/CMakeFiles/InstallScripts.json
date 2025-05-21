@@ -1,7 +1,9 @@
 {
 	"InstallScripts" : 
 	[
-		"C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/cmake_install.cmake"
+		"C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/cmake_install.cmake",
+		"C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/lib/cmake_install.cmake",
+		"C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/bin/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

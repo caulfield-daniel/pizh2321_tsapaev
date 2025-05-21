@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib -g -std=gnu++17 -o lib\\CMakeFiles\\id3v24.dir\\Parser.cpp.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab07\\cpp-lab07-max\\lib\\Parser.cpp",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab07\\cpp-lab07-max\\lib\\Parser.cpp",
+  "output": "lib\\CMakeFiles\\id3v24.dir\\Parser.cpp.obj"
+},
+{
+  "directory": "C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib -g -std=gnu++17 -o bin\\CMakeFiles\\id3parser.dir\\main.cpp.obj -c C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab07\\cpp-lab07-max\\bin\\main.cpp",
+  "file": "C:\\Users\\user\\Desktop\\shit\\dev\\OOP\\pizh2321_tsapaev\\cpp\\lab07\\cpp-lab07-max\\bin\\main.cpp",
+  "output": "bin\\CMakeFiles\\id3parser.dir\\main.cpp.obj"
+}
+]

@@ -1,0 +1,9 @@
+# ninja log v6
+2	667	7689509252925876	lib/CMakeFiles/id3v24.dir/Parser.cpp.obj	bc028c8d4cac0f8f
+5	118	7689507657429766	lib/libid3v24.a	19ecfcab49515224
+710	801	7689509927748233	lib/libparser.a	6d066bb70535e07b
+6	573	7689509920709045	bin/CMakeFiles/id3parser.dir/main.cpp.obj	4d8da41361104e4a
+4	693	7689510774224824	lib/CMakeFiles/parser.dir/Parser.cpp.obj	b47843f47f6e4f26
+6	669	7689511339949240	lib/CMakeFiles/id3v24.dir/Parser.cpp.obj	bc028c8d4cac0f8f
+669	749	7689511346583802	lib/libid3v24.a	19ecfcab49515224
+749	854	7689511347372144	bin/id3parser.exe	5c6642ce0203994c

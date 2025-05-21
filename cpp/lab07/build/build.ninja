@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Project
+# Project: ID3v24Parser
 # Configurations: Debug
 # =============================================================================
 
@@ -56,7 +56,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07 -BC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\cpp-lab07-max -BC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -64,7 +64,141 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target id3v24
+
+
+#############################################
+# Order-only phony target for id3v24
+
+build cmake_object_order_depends_target_id3v24: phony || .
+
+build lib/CMakeFiles/id3v24.dir/Parser.cpp.obj: CXX_COMPILER__id3v24_unscanned_Debug C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib/Parser.cpp || cmake_object_order_depends_target_id3v24
+  CONFIG = Debug
+  DEP_FILE = lib\CMakeFiles\id3v24.dir\Parser.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  INCLUDES = -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib
+  OBJECT_DIR = lib\CMakeFiles\id3v24.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\id3v24.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target id3v24
+
+
+#############################################
+# Link the static library lib\libid3v24.a
+
+build lib/libid3v24.a: CXX_STATIC_LIBRARY_LINKER__id3v24_Debug lib/CMakeFiles/id3v24.dir/Parser.cpp.obj
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\id3v24.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libid3v24.a
+  TARGET_PDB = id3v24.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build lib/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build\lib && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build lib/edit_cache: phony lib/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build lib/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build\lib && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\cpp-lab07-max -BC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build lib/rebuild_cache: phony lib/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target id3parser
+
+
+#############################################
+# Order-only phony target for id3parser
+
+build cmake_object_order_depends_target_id3parser: phony || cmake_object_order_depends_target_id3v24
+
+build bin/CMakeFiles/id3parser.dir/main.cpp.obj: CXX_COMPILER__id3parser_unscanned_Debug C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/bin/main.cpp || cmake_object_order_depends_target_id3parser
+  CONFIG = Debug
+  DEP_FILE = bin\CMakeFiles\id3parser.dir\main.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  INCLUDES = -IC:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib
+  OBJECT_DIR = bin\CMakeFiles\id3parser.dir
+  OBJECT_FILE_DIR = bin\CMakeFiles\id3parser.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target id3parser
+
+
+#############################################
+# Link the executable bin\id3parser.exe
+
+build bin/id3parser.exe: CXX_EXECUTABLE_LINKER__id3parser_Debug bin/CMakeFiles/id3parser.dir/main.cpp.obj | lib/libid3v24.a || lib/libid3v24.a
+  CONFIG = Debug
+  FLAGS = -g
+  LINK_LIBRARIES = lib/libid3v24.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = bin\CMakeFiles\id3parser.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = bin\id3parser.exe
+  TARGET_IMPLIB = bin\libid3parser.dll.a
+  TARGET_PDB = id3parser.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build bin/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build\bin && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build bin/edit_cache: phony bin/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build bin/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build\bin && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\cpp-lab07-max -BC:\Users\user\Desktop\shit\dev\OOP\pizh2321_tsapaev\cpp\lab07\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build bin/rebuild_cache: phony bin/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
 # Target aliases.
+
+build id3parser: phony bin/id3parser.exe
+
+build id3parser.exe: phony bin/id3parser.exe
+
+build id3v24: phony lib/libid3v24.a
+
+build libid3v24.a: phony lib/libid3v24.a
 
 # =============================================================================
 # Folder targets.
@@ -74,7 +208,21 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build
 
-build all: phony
+build all: phony lib/all bin/all
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/bin
+
+build bin/all: phony bin/id3parser.exe
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/lib
+
+build lib/all: phony lib/libid3v24.a
 
 # =============================================================================
 # Built-in targets
@@ -83,14 +231,14 @@ build all: phony
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/cmake_install.cmake: RERUN_CMAKE | C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/4.0.0/CMakeCCompiler.cmake CMakeFiles/4.0.0/CMakeCXXCompiler.cmake CMakeFiles/4.0.0/CMakeRCCompiler.cmake CMakeFiles/4.0.0/CMakeSystem.cmake
+build build.ninja C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/cmake_install.cmake C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/lib/cmake_install.cmake C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/build/bin/cmake_install.cmake: RERUN_CMAKE | C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/CMakeLists.txt C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/bin/CMakeLists.txt C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/4.0.0/CMakeCXXCompiler.cmake CMakeFiles/4.0.0/CMakeRCCompiler.cmake CMakeFiles/4.0.0/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/4.0.0/CMakeCCompiler.cmake CMakeFiles/4.0.0/CMakeCXXCompiler.cmake CMakeFiles/4.0.0/CMakeRCCompiler.cmake CMakeFiles/4.0.0/CMakeSystem.cmake: phony
+build C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/CMakeLists.txt C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/bin/CMakeLists.txt C$:/Users/user/Desktop/shit/dev/OOP/pizh2321_tsapaev/cpp/lab07/cpp-lab07-max/lib/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/4.0.0/CMakeCXXCompiler.cmake CMakeFiles/4.0.0/CMakeRCCompiler.cmake CMakeFiles/4.0.0/CMakeSystem.cmake: phony
 
 
 #############################################
