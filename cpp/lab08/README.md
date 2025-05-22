@@ -1,49 +1,104 @@
-# Лабораторная работа 8
+# Библиотека BST Containers
 
-Бинарное дерево поиска. Шаблоны. STL.
+Этот проект предоставляет три шаблонных класса двоичных деревьев поиска (BST) с различными способами обхода:
 
-## Задача
+- **`BST_InOrder<T, Compare, Allocator>`**  
+  Обход «in-order» (симметричный). Элементы посещаются в порядке возрастания (или по заданному компаратору).
 
-Реализовать три STL-совместимых контейнера для [BinarySearchTree](https://en.wikipedia.org/wiki/Binary_search_tree), реализующие различные [способы обхода дерева (in-, pre-, post-order)](https://en.wikipedia.org/wiki/Tree_traversal) через итератор.
+- **`BST_PreOrder<T, Compare, Allocator>`**  
+  Обход «pre-order» (прямой). Сначала посещается узел, затем левое и правое поддеревья.
 
-## Требования
+- **`BST_PostOrder<T, Compare, Allocator>`**  
+  Обход «post-order» (обратный). Сначала левое и правое поддеревья, затем узел.
 
-Контейнер должен предоставлять из себя шаблон, праметрезируемый типом хранимых объетов, оператором сравнения и аллокатором, а так же удовлетворять следующим требованиям к stl - совместимым контейнерам:
+Каждый контейнер параметризуется:
 
-- [контейнера](https://en.cppreference.com/w/cpp/named_req/Container)
-- [ассоциативный контейнера](https://en.cppreference.com/w/cpp/named_req/AssociativeContainer)
-- [контейнера с обратным итератором](https://en.cppreference.com/w/cpp/named_req/ReversibleContainer)
-- [контейнера поддерживающие аллокатор](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer)
-- [oбладать двунаправленным итератом](https://en.cppreference.com/w/cpp/named_req/BidirectionalIterator)
+- `T` — тип хранимых элементов.  
+- `Compare` — функтор сравнения (по умолчанию `std::less<T>`).  
+- `Allocator` — тип аллокатора (по умолчанию `std::allocator<T>`).
 
-Способ обхода дерева должен быть реализован через итератор, те оператор "++" должен
-приводить к перемещению итератора к следующему элементу в дереве, согласно правилу
-обхода.
+Все три контейнера удовлетворяют STL-требованиям:
 
-## Тесты
+- **Container**  
+- **AssociativeContainer**  
+- **ReversibleContainer** (для in-order и post-order)  
+- **AllocatorAwareContainer**  
+- **BidirectionalIterator**
 
-Все вышеуказанные требования должны быть покрыты тестами, с помощью фреймворка [Google Test](http://google.github.io/googletest).
+Контейнеры предоставляют:
 
-Тесты также являются частью задания, поэтому покрытие будет влиять на максимальный
-балл.
+- Конструирование/деструктуру  
+- `insert(const T&) → std::pair<iterator, bool>`  
+- `find(const T&)`, `count(const T&)`  
+- `size()`, `empty()`, `clear()`  
+- Прямые итераторы: `begin()`, `end()`  
+- Обратные итераторы: `rbegin()`, `rend()`
 
-## Тестовые данные
+---
 
-Для проверки работоспособности вашей программы, можно воспользоваться свободно-распространяемыми в интернете mp3 - файлами. Например, на сайте [Free Music Archive](https://freemusicarchive.org/home)
+## Диаграмма классов
 
-Так же, большинство стандартных программ для проигрывания mp3 позволяют редактировать метаинформацию.
+![Диаграмма классов](images/classes.png)  
+Схема отражает взаимосвязи между шаблонными классами BST и их вложенными итераторами.
 
-## Ограничения
+## Запуск
 
-- Запрещено использовать стандартные контейнеры
+- **`launch_main.bat`** / `./bin/main` — запускает демонстрационную программу.  
+- **`launch_tests.bat`** / `ctest` — запускает набор тестов Google Test.
 
-## NB
+---
 
-Подумайте над тем как не делать 3 разных контейнера, а воспользоваться [Tag Dispatch
-Idiom](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Tag_Dispatching)
+## Пример использования
 
-## Deadline
+```cpp
+#include <iostream>
+#include "BST_containers.h"
 
-24.05.2025 5
-31.05.2025 4
-07.06.2025 3
+int main() {
+    BST_InOrder<int>   bst_in;
+    BST_PreOrder<int>  bst_pre;
+    BST_PostOrder<int> bst_post;
+
+    int a[] = { 5, 2, 8, 1, 3, 7, 9 };
+    for(int v : a) {
+        bst_in.insert(v);
+        bst_pre.insert(v);
+        bst_post.insert(v);
+    }
+
+    // In-order (отсортированный порядок)
+    for(auto it = bst_in.begin(); it != bst_in.end(); ++it)
+        std::cout << *it << ' ';
+    std::cout << "\n";
+
+    // Pre-order
+    for(auto x : bst_pre)
+        std::cout << x << ' ';
+    std::cout << "\n";
+
+    // Post-order
+    for(auto x : bst_post)
+        std::cout << x << ' ';
+    std::cout << "\n";
+
+    return 0;
+}
+```
+
+---
+
+## Тестирование
+
+Юнит-тесты реализованы с помощью Google Test в файле `tests/test_bst_containers.cpp`. Они проверяют:
+
+- Типовые требования и соответствие STL-контейнеру.  
+- Базовые операции: `insert`, `find`, `count`, `clear`.  
+- Корректность последовательностей обхода для in-, pre- и post-order.  
+- Пограничные случаи: пустое дерево, копирование/присваивание, поиск отсутствующих элементов.
+
+Запуск тестов:
+
+```bash
+cd build
+ctest --output-on-failure
+```
