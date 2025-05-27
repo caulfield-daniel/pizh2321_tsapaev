@@ -6,20 +6,27 @@
 
 namespace omfl {
 
+// Метод для поиска элемента по ключу в узле
 const Element& Node::Find(const std::string& key) const {
+	// Ищем элемент в контейнере items_
 	auto it = items_.find(key);
+	// Если элемент не найден, выбрасываем исключение
 	if (it == items_.end()) throw std::runtime_error("Key not found: " + key);
+	// Возвращаем найденный элемент
 	return it->second;
 }
 
+// Метод для проверки существования элемента по ключу в узле
 bool Node::Exists(const std::string& key) const {
+	// Ищем элемент в контейнере items_
 	return items_.find(key) != items_.end();
 }
 
-
+// Макрос для проверки типа элемента
 #define CHECK_KIND(k) \
 	if (kind_ != Kind::k) throw std::runtime_error("Bad kind");
 
+// Методы для проверки типа элемента
 bool Element::IsInteger() const { return kind_ == Kind::INTEGER; }
 bool Element::IsReal() const { return kind_ == Kind::REAL; }
 bool Element::IsBoolean() const { return kind_ == Kind::BOOLEAN; }
@@ -27,6 +34,7 @@ bool Element::IsText() const { return kind_ == Kind::TEXT; }
 bool Element::IsList() const { return kind_ == Kind::LIST; }
 bool Element::IsNode() const { return kind_ == Kind::NODE; }
 
+// Методы для получения значения элемента
 int Element::ToInteger() const {
 	CHECK_KIND(INTEGER);
 	return valueInt_;
@@ -52,6 +60,7 @@ const Node& Element::AsNode() const {
 	return *nodePtr_;
 }
 
+// Методы для создания элемента определенного типа
 Element Element::MakeInteger(int v) {
 	Element e;
 	e.kind_ = Kind::INTEGER;
@@ -89,6 +98,7 @@ Element Element::MakeNode(const Node& n) {
 	return e;
 }
 
+// Методы для поиска элемента в конфигурации
 const Element& Configuration::Find(const std::string& key) const {
 	return root_.Find(key);
 }
@@ -96,14 +106,17 @@ bool Configuration::Exists(const std::string& key) const {
 	return root_.Exists(key);
 }
 
+// Метод для удаления пробелов в начале и конце строки
 static inline void strip(std::string& s) {
 	size_t a = s.find_first_not_of(" \t\r\n");
 	size_t b = s.find_last_not_of(" \t\r\n");
 	s = (a == std::string::npos ? "" : s.substr(a, b - a + 1));
 }
 
+// Функция для интерпретации строки в элемент
 Element interpret(const std::string& s);
 
+// Функция для загрузки конфигурации из текста
 Configuration Load(const std::string& text) {
 	Configuration cfg;
 	Node* current = &cfg.root_;
@@ -165,6 +178,7 @@ Configuration Load(const std::string& text) {
 	return cfg;
 }
 
+// Функция для интерпретации строки в элемент
 Element interpret(const std::string& s) {
 	// String literal
 	if (s.front() == '"' && s.back() == '"')

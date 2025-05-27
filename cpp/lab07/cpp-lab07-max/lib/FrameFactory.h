@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "AlbumFrame.h"
 #include "ArtistFrame.h"
 #include "CommentFrame.h"
 #include "TextFrame.h"
@@ -19,6 +20,9 @@ class FrameFactory {
 			// Фрейм автора аудио (TPE1 - Involved performer(s)/lead
 			// performer(s))
 			return std::make_unique<ArtistFrame>(id, size);
+		} else if (id == "TALB") {
+			// Фрейм названия альбома (TALB - Album/Movie/Show title)
+			return std::make_unique<AlbumFrame>(id, size);
 		}
 		// 2. Затем общие случаи
 		else if (id[0] == 'T') {

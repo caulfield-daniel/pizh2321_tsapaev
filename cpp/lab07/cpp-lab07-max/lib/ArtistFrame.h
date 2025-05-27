@@ -8,7 +8,7 @@ class ArtistFrame : public TextFrame {
    public:
 	ArtistFrame(const std::string& id, uint32_t size) : TextFrame(id, size) {}
 
-	// Переопределяем repr() для ясности (необязательно, но полезно для отладки)
+	// Переопределяем repr()
 	std::string repr() const override { return "Artist: " + text; }
 };
 
